@@ -29,10 +29,6 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_detail);
 
-        initViews();
-    }
-
-    private void initViews() {
         backdropImage = findViewById(R.id.backdropImage);
         posterImage = findViewById(R.id.posterImage);
         title = findViewById(R.id.title);
@@ -64,4 +60,6 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

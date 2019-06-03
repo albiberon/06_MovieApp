@@ -35,22 +35,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initViews();
-        initObservers();
-        initRecyclerView();
-    }
 
-    private void initRecyclerView() {
+
         movieListAdapter = new MovieListAdapter(this, movieList);
         rvMovieList = findViewById(R.id.movieList);
         rvMovieList.setAdapter(movieListAdapter);
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
         rvMovieList.setLayoutManager(gridLayoutManager);
-//
 
-    }
-
-    private void initViews() {
         posterImage = findViewById(R.id.posterImage);
         btnMovies = findViewById(R.id.submitButton);
         yearEt = findViewById(R.id.yearText);
@@ -60,9 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 viewModel.getMovieYear(yearEt.getText().toString());
             }
         });
-    }
 
-    private void initObservers() {
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         viewModel.getError().observe(this, new Observer<String>() {
             @Override
@@ -77,7 +67,12 @@ public class MainActivity extends AppCompatActivity {
                 updateUI();
             }
         });
+
+
+
+
     }
+
 
     private void updateUI() {
         if (movieListAdapter == null) {

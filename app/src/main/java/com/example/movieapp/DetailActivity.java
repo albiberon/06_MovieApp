@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.movieapp.R;
+import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -37,18 +38,17 @@ public class DetailActivity extends AppCompatActivity {
         overview = findViewById(R.id.overview);
         buttonBack = findViewById(R.id.backButton);
 
-        Glide.with(this)
-                .load(baseImageURL + getIntent().getStringExtra("backdropImage"))
-                .centerCrop()
-                .transition(new DrawableTransitionOptions().crossFade())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(backdropImage);
-        Glide.with(this)
-                .load(baseImageURL + getIntent().getStringExtra("posterImage"))
-                .centerCrop()
-                .transition(new DrawableTransitionOptions().crossFade())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(posterImage);
+
+        //Load image
+        Picasso.get().load(new StringBuilder(baseImageURL)
+                .append(getIntent().getStringExtra("backdropImage"))
+                .toString()).into(backdropImage);
+
+        Picasso.get().load(new StringBuilder(baseImageURL)
+                .append(getIntent().getStringExtra("posterImage"))
+                .toString()).into(posterImage);
+
+
         title.setText(getIntent().getStringExtra("title"));
         releaseDate.setText(getIntent().getStringExtra("releaseDate"));
         rating.setText(Double.toString(getIntent().getDoubleExtra("rating", 0.0)));

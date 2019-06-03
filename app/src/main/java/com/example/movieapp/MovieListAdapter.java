@@ -11,10 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.movieapp.Model.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,13 +37,24 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
-        Glide.with(context)
-                .load(baseImageURL + movieList.get(viewHolder.getAdapterPosition()).getPosterImage())
-                .centerCrop()
-                .transition(new DrawableTransitionOptions().crossFade())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(viewHolder.posterImage);
+
+        //Load image
+        Picasso.get().load(new StringBuilder(baseImageURL + movieList.get(viewHolder.getAdapterPosition()).getPosterImage())
+                .toString()).into(viewHolder.posterImage);
         viewHolder.movieNumber.setText(String.valueOf(viewHolder.getAdapterPosition() + 1));
+
+        viewHolder.movieContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("posterImage", movieList.get(viewHolder.getAdapterPosition()).getPosterImage());
+                intent.putExtra("backdropImage", movieList.get(viewHolder.getAdapterPosition()).getBackdropImage());
+                intent.putExtra("releaseDate", movieList.get(viewHolder.getAdapterPosition()).getReleaseDate());
+                intent.putExtra("rating", movieList.get(viewHolder.getAdapterPosition()).getRating());
+                intent.putExtra("overview", movieList.get(viewHolder.getAdapterPosition()).getOverview());
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -65,13 +74,13 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
 
         private ImageView posterImage;
         private TextView movieNumber;
-        private ConstraintLayout movieCell;
+        private ConstraintLayout movieContainer;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             posterImage = itemView.findViewById(R.id.posterImage);
             movieNumber = itemView.findViewById(R.id.movieNumber);
-            movieCell = itemView.findViewById(R.id.movieCell);
+            movieContainer = itemView.findViewById(R.id.movieContainer);
         }
     }
 }

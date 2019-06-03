@@ -1,5 +1,6 @@
 package com.example.movieapp.Model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -8,45 +9,59 @@ import java.util.List;
 public class Movie implements Serializable {
 
     @SerializedName("title")
+    @Expose
     private String title;
 
     @SerializedName("overview")
+    @Expose
     private String overview;
 
     @SerializedName("vote_average")
+    @Expose
     private double rating;
 
     @SerializedName("release_date")
+    @Expose
     private String releaseDate;
 
     @SerializedName("poster_path")
+    @Expose
     private String posterImage;
 
     @SerializedName("backdrop_path")
+    @Expose
     private String backdropImage;
 
     @SerializedName("adult")
+    @Expose
     private Boolean adult;
 
     @SerializedName("genre_ids")
+    @Expose
     private List<Integer> genre_ids;
 
     @SerializedName("id")
+    @Expose
     private int id;
 
     @SerializedName("original_title")
+    @Expose
     private String original_title;
 
     @SerializedName("original_language")
+    @Expose
     private String original_language;
 
     @SerializedName("popularity")
+    @Expose
     private Number popularity;
 
     @SerializedName("video")
+    @Expose
     private Boolean video;
 
     @SerializedName("vote_count")
+    @Expose
     private Integer vote_count;
 
     public Movie(String title, String overview, double rating, String releaseDate, String posterImage, String backdropImage, Boolean adult, List<Integer> genre_ids, int id, String original_title, String original_language, Number popularity, Boolean video, Integer vote_count) {

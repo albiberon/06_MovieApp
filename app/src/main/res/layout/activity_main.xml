@@ -25,7 +25,7 @@
         android:ems="10"
         android:hint="@string/yearText"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/introText"
         app:layout_constraintTop_toTopOf="parent"
         tools:targetApi="o" />

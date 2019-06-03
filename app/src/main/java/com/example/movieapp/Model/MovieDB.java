@@ -3,20 +3,25 @@ package com.example.movieapp.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MovieDB {
+public class MovieDB implements Serializable {
 
     @SerializedName("page")
+    @Expose
     private Integer page;
 
     @SerializedName("total_results")
+    @Expose
     private Integer total_results;
 
     @SerializedName("total_pages")
+    @Expose
     private Integer total_pages;
 
     @SerializedName("results")
+    @Expose
     private List<Movie> results;
 
     public MovieDB(Integer page, Integer total_results, Integer total_pages, List<Movie> results){

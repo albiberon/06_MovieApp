@@ -8,9 +8,6 @@ public class MovieRepository {
 
     private MovieDatabaseApiService movieDatabaseApiService = MovieDatabaseApi.create();
 
-    public Call<MovieDB> getMovies() {
-        return movieDatabaseApiService.getMovies();
-    }
 
     public Call<MovieDB> getMovieYear(String year) {
         return movieDatabaseApiService.getMovieYear(year);

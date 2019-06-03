@@ -35,24 +35,6 @@ public class MainActivityViewModel extends AndroidViewModel {
         return movie;
     }
 
-    public void getMovies() {
-        movieRepository
-                .getMovies()
-                .enqueue(new Callback<MovieDB>() {
-                    @Override
-                    public void onResponse(@NonNull Call<MovieDB> call, @NonNull Response<MovieDB> response) {
-                        if (response.isSuccessful() && response.body() != null) {
-                            movie.setValue(response.body().getResults());
-                        } else {
-                            error.setValue("Api Error: " + response.message());
-                        }
-                    }
-                    @Override
-                    public void onFailure(@NonNull Call<MovieDB> call, @NonNull Throwable t) {
-                        error.setValue("Api Error: " + t.getMessage());
-                    }
-                });
-    }
 
     public void getMovieYear(String year) {
         movieRepository
